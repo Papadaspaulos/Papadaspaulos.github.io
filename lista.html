@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>SuperWeb! | Busca Superheroes o Villanos!</title>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    <link href="https://fonts.googleapis.com/css?family=Bebas+Neue|Lilita+One|Lobster|PT+Sans+Narrow&display=swap" rel="stylesheet"> 
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+</head>
+<body>
+
+    <header>
+        <div class="navbar-fixed">
+            <nav style="background-color: #1a53ff; background-image: url('img/cross-stripes.png');">
+                <div class="container">
+                    <div class="nav-wrapper">
+                        <a href="#" class="brand-logo right" style="font-family: 'Lilita One', cursive;">SuperWeaboo!</a>
+                        <a href="#" data-target="mobile-nav" class="sidenav-trigger"><i class="material-icons">menu</i></a>
+
+                        
+                        <ul class="left hide-on-med-and-down">
+                            <li><a href="index.html">Home</a></li>
+                            <li><a href="lista.html">Patreons</a></li>
+                            <li><a href="buscar.html">Buscar</a></li>
+                            <li><a href="autores.html">Developers</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </nav>
+        </div>
+
+        <ul id="mobile-nav" class="sidenav" style="background-color: #668cff;">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="lista.html">Patreons</a></li>
+            <li><a href="buscar.html">Buscar</a></li>
+            <li><a href="autores.html">Developers</a></li>
+        </ul>
+    </header>
+
+
+
+    <main>
+
+    <div id="vue">
+        <div class="section" style="background-color: #3366ff; background-image: url('img/binding-dark.png');">
+            <div class="row container">
+                <h2 class="header white-text" style="font-family: 'Bebas Neue', cursive;">¿Quieres Ser un verdadero Heroe?!</h2>
+                <h5 class="white-text" style="font-family: 'PT Sans Narrow', sans-serif;">¡Ven y unete a nuestro Patreon para poder seguir manteniendo esta pagina!</h5>
+                <p class="white-text" style="font-family: 'PT Sans Narrow', sans-serif;">y podras aparecer aqui en la pagina como un colaborador mas , <b></b></p>
+                <a  href="https://www.patreon.com/" class="white-text" style="font-family: 'PT Sans Narrow', sans-serif;"> pincha aqui y te llevara a nuestra pagina de Patreon , <b></b></a>
+                <br><br>
+                <h2 class="header white-text center" style="font-family: 'Bebas Neue', cursive;">Ellos ya se unieron ¿Tu que esperas? </h2>
+                <h5 class="header white-text center" style="font-family: 'Bebas Neue', cursive;"> Gracias a ellos seguimos adelante con nuestra pagina </h5>
+
+                <div class="card-panel center" style="background-color: #1a53ff; background-image: url('img/cross-stripes.png'); border-style: double;" v-for="item in users">
+                                <img :src="item.picture.large" class="circle">
+                                <p class="grey-text">
+                                    <h3 class="white-text" style="font-family: 'PT Sans Narrow', sans-serif;" >
+                                        {{item.name.title}}
+                                        {{item.name.first}}
+                                    </h3>
+                                    <h4 class="white-text" style="font-family: 'PT Sans Narrow', sans-serif;">
+                                        <b>
+                                            Ciudad:
+                                            {{item.location.city}}
+                                        </b>
+
+                                    </h4>
+
+                                    <h4 class="white-text" style="font-family: 'PT Sans Narrow', sans-serif;">
+                                        <b>
+                                            Edad:
+                                            {{item.dob.age}}
+                                        </b>
+
+                                    </h4>
+                                </p>
+                                <button @click="ver_modal(item)" class="btn-floating" style="background-color: #1a53ff;">
+                                    <i class="material-icons left">blur_on</i>
+
+                                </button>
+                               
+                            </div>
+
+                
+            </div>
+        </div>
+        <div class="parallax-container">
+            <div class="parallax"><img src="img/spider-verse-2.jpg"></div>
+        </div>
+
+        <div id="modal_x" class="modal">
+            <div v-if="usuario!=null">
+                <div class="modal-content" style="background-color: #3366ff; background-image: url('img/binding-dark.png');">
+                    <img :src="usuario.picture.large" class=" center circle">
+                    <h4 class="white-text"  style="font-family: 'PT Sans Narrow', sans-serif;">{{usuario.name.title}} {{usuario.name.first}} {{usuario.name.last}}</h4>
+                    <h6 class="white-text"  style="font-family: 'PT Sans Narrow', sans-serif;"> Fecha de Nacimiento: {{usuario.dob.date}}</h6>
+                    <h6 class="white-text"  style="font-family: 'PT Sans Narrow', sans-serif;"> Sexo: {{usuario.gender}}</h6>
+
+                    <p class="white-text"  style="font-family: 'PT Sans Narrow', sans-serif;"> Email: {{usuario.email}}</p>
+                    
+                </div>
+                <div class="modal-footer" style="background-color: #1a53ff; background-image: url('img/cross-stripes.png');">
+                    <a href="#!"   class="modal-close waves-effect waves-green btn-flat white-text">Volver</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
+
+        
+    
+
+
+    </main>
+
+
+
+    <footer>
+        <!-- <div class="container">
+            <div class="row">
+                <div class="col l6 s12">
+                    <h5 class="white-text">Footer Content</h5>
+                    <p class="grey-text text-lighten-4">You can use rows and columns here to organize your footer content.</p>
+                </div>
+                <div class="col l4 offset-l2 s12">
+                    <h5 class="white-text">Links</h5>
+                    <ul>
+                        <li><a class="grey-text text-lighten-3" href="#!">Link 1</a></li>
+                        <li><a class="grey-text text-lighten-3" href="#!">Link 2</a></li>
+                        <li><a class="grey-text text-lighten-3" href="#!">Link 3</a></li>
+                        <li><a class="grey-text text-lighten-3" href="#!">Link 4</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div> -->
+        <div class="footer-copyright" style="background-color: #1a53ff; background-image: url('img/cross-stripes.png')">
+            <div class="container white-text">
+                © 2019 Jared Rojas & Juan Gonzalez
+                <a class="grey-text text-lighten-4 right" href="https://superheroapi.com/index.html">API suplida por: superheroapi.com</a>
+            </div>
+        </div>
+    </footer>
+
+     <!-- Modal Structure -->
+ 
+
+
+
+
+
+
+
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script>
+        new Vue({
+            el: '#vue',
+            data: {
+                estado: true,
+                users: [],
+                url: 'https://randomuser.me/api/?results=5',
+                usuario: null
+            },
+            methods: {
+                async cargar() {
+                    var resultado = await axios.get(this.url);
+                    this.users = resultado.data.results;
+                    console.log(this.users);
+                    this.estado = false;
+                },
+                ver_modal(item) {
+                    
+                   
+                   var instance = M.Modal.getInstance(document.getElementById('modal_x'));
+                    console.log(instance);
+                    instance.open();
+                    this.usuario = item;
+                     console.log(this.usuario);
+                }
+            },
+            created() {
+                this.cargar();
+            },
+            mounted() {
+                document.addEventListener('DOMContentLoaded', function () {
+                    var elems = document.querySelector('.modal');
+                    var instances = M.Modal.init(elems);
+
+                    //slider
+                    //var slider = document.querySelector('.slider');
+                    //var instances = M.Slider.init(slider, {
+                        //indicators: false,
+                        //height: 500
+                   // });
+                });
+               
+            }
+
+
+        });
+        
+        document.addEventListener('DOMContentLoaded', function () {
+            var elems = document.querySelectorAll('.slider');
+            var instances = M.Slider.init(elems, {
+                indicators: false,
+                height: 500
+            });
+
+        });
+      
+document.addEventListener('DOMContentLoaded', function() {
+            var side = document.querySelectorAll('.sidenav');
+            var instances = M.Sidenav.init(side, {});
+            var elems = document.querySelectorAll('.parallax');
+            var instances = M.Parallax.init(elems, {});
+        });
+
+        $(document).ready(function () {
+            $('.slider').slider();
+        });
+    </script>
+
+    
+
+</body>
+</html>
